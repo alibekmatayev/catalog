@@ -1,0 +1,19 @@
+
+.productContainer {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  .productContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .filterPanel {
+    order: 2;
+    margin-top: 2rem;
+  }
+}
+
