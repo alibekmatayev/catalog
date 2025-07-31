@@ -1,0 +1,236 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  &.show {
+    opacity: 1;
+  }
+}
+
+.modal {
+  z-index: 1000;
+  background: #fff;
+  width: 90%;
+  max-width: 1000px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  position: fixed;
+    top: 50%;
+  left: 50%;
+  transform: translateX(-50%) scale(1);
+  overflow: hidden; 
+
+  transition: all 0.3s ease;
+
+  &.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  width: 100%;
+}
+
+.imageWrapper {
+  position: relative;
+  flex: 0 0 40%;  
+  height: 100%; 
+  aspect-ratio: 1/1;
+
+  img {
+    position: absolute;
+    inset: 0;           
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+  }
+}
+
+.details {
+  flex: 1;
+  padding: 2rem; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 1rem;
+  overflow-y: auto;
+}
+
+.header {
+  z-index: 1000;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  .closeIcon {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    color: #555;
+
+    &:hover {
+      color: #000;
+    }
+  }
+}
+
+.name {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.price {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.sizeGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.5rem;
+
+  button {
+    padding: 0.4rem 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #f7f7f7;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: 0.2s;
+
+    &:hover {
+      background: #ddd;
+    }
+
+    &.activeSize {    
+      background: #000;   
+      color: #fff;      
+      border-color: #000;
+    }
+  }
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    background: #f7f7f7;
+    cursor: pointer;
+    font-size: 1rem;
+
+    &:hover {
+      background: #ddd;
+    }
+  }
+
+  span {
+    min-width: 20px;
+    text-align: center;
+  }
+}
+
+.bottomRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.addToCart {
+  margin-top: 1rem;
+  padding: 0.7rem 1.2rem;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+
+  &:hover {
+    background-color: #333;
+  }
+}
+
+.colors {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  span {
+    font-size: 0.9rem;
+    color: #444;
+  }
+
+  .colorSwatches {
+    display: inline-flex;
+    gap: 0.5rem;
+  }
+
+  .swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+  }
+}
+
+@media (max-width: 960px) {
+  .modal {
+    z-index: 1001;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    transform: none;
+    border-radius: 0;
+
+    &.show {
+    opacity: 1;
+    transform: unset;
+  }
+  }
+
+  .content {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .imageWrapper {
+    flex: 0 0 auto;
+    width: 100%;
+    height: 40vh;
+    img {
+      object-fit: cover;
+    }
+  }
+
+  .details {
+    flex: 0 0 auto;
+    padding: 1rem;
+    gap: 1rem;
+    overflow-y: visible;
+  }
+
+  .sizeGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .price {
+    font-size: 1.4rem;
+  }
+}

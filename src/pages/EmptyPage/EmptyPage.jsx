@@ -16,7 +16,7 @@ export default function EmptyPage() {
       </button>
 
       <div className="center-container">
-        <h2>Oops, nothing's here...</h2>
+        <h2>Упс...</h2>
       </div>
     </div>
   );

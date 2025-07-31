@@ -1,29 +1,36 @@
 import styles from "./FilterPanel.module.scss";
 
+const { panel, filterGroup } = styles;
+
 export default function FilterPanel({
   category,
   onCategoryChange,
   maxPrice,
   onMaxPriceChange,
+  selectedColor,
+  onColorChange,
+  availableColors = [],
 }) {
   return (
-    <aside className={styles.panel}>
-      <h3>Фильтры</h3>
-
-      <div className={styles.filterGroup}>
-        <label>Категория</label>
-        <select
-          value={category}
-          onChange={(e) => onCategoryChange(e.target.value)}
-        >
-          <option value="Все">Все</option>
-          <option value="Кроссовки">Кроссовки</option>
-          <option value="Футболки">Футболки</option>
-        </select>
+    <aside className={panel}>
+      <div className={filterGroup}>
+        <ul className={styles.categoryList}>
+          {["Все", "Кроссовки", "Футболки"].map((item) => (
+            <li
+              key={item}
+              className={`${styles.categoryItem} ${
+                category === item ? styles.active : ""
+              }`}
+              onClick={() => onCategoryChange(item)}
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
       </div>
 
-      <div className={styles.filterGroup}>
-        <label>Максимальная цена: {maxPrice}₸</label>
+      <div className={filterGroup}>
+        <label>Максимальная цена: {maxPrice}$</label>
         <input
           type="range"
           min="0"
@@ -31,6 +38,24 @@ export default function FilterPanel({
           value={maxPrice}
           onChange={(e) => onMaxPriceChange(Number(e.target.value))}
         />
+      </div>
+
+      <div className={filterGroup}>
+        <span>Цвет:</span>
+        <div className={styles.colorSwatches}>
+          {availableColors.map((color) => (
+            <div
+              key={color}
+              className={`${styles.colorSwatch} ${
+                selectedColor === color ? styles.activeColor : ""
+              }`}
+              style={{ backgroundColor: color }}
+              onClick={() =>
+                onColorChange(selectedColor === color ? null : color)
+              }
+            />
+          ))}
+        </div>
       </div>
     </aside>
   );

@@ -1,19 +1,106 @@
+.productPage {
+  padding: 0 2rem;
+
+  @media (max-width: 768px) {
+    padding: 0; 
+  }
+}
+
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0 4rem;
+
+  @media (max-width: 768px) {
+
+    gap: 1rem;
+    padding: 0 1rem;
+
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+ .controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    justify-content: flex-end; 
+  }
+
+  button {
+    border: 0;
+    background: none;
+    cursor: pointer;
+    border-radius: 4px;
+
+  }
+
+  select {
+    padding: 0.4rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+}
+}
+
+.mobileFilterOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+}
+
+.mobileFilterPanel {
+  position: fixed;
+  inset: 0; 
+  background: #fff;
+  padding: 1rem 1.5rem;
+  z-index: 1001;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: unset;
+  gap: 1rem;
+}
+
+.closeIcon {
+  align-self: flex-end;
+  cursor: pointer;
+  color: #333;
+  margin-bottom: 0.5rem;
+
+  &:hover {
+    color: #000;
+  }
+}
 
 .productContainer {
   display: grid;
-  grid-template-columns: 250px 1fr;
   gap: 2rem;
-  padding: 2rem;
-}
+  align-items: start; 
+  transition: grid-template-columns 0.3s ease;
 
-@media (max-width: 768px) {
-  .productContainer {
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr !important;
+  }
+
+  &.withFilter {
+    grid-template-columns: 250px 1fr;
+  }
+
+  &.noFilter {
     grid-template-columns: 1fr;
   }
 
-  .filterPanel {
-    order: 2;
-    margin-top: 2rem;
-  }
 }
-

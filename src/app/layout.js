@@ -1,7 +1,9 @@
 import { Montserrat } from "next/font/google";
 import { ToastContainer } from "react-toastify";
+import { CartProvider } from "@/context/CartContext";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.scss";
+
 const montserrat = Montserrat({ subsets: ["latin", "cyrillic"] });
 
 export const metadata = {
@@ -12,9 +14,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ru">
-      <body className={`${montserrat.className}`}>
-        <ToastContainer />
-        {children}
+      <body className={montserrat.className}>
+        <CartProvider>
+          <ToastContainer />
+          {children}
+        </CartProvider>
       </body>
     </html>
   );

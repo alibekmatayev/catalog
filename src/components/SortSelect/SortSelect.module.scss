@@ -1,0 +1,62 @@
+.customSort {
+  position: relative;
+  cursor: pointer;
+  width: fit-content;
+  z-index: 10;
+}
+
+.labelWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.label {
+  user-select: none;
+}
+
+.selected {
+  color: #777;
+  font-weight: normal;
+  user-select: none;
+}
+
+.dropdown {
+  margin-top:1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: absolute;
+  top: 0.5rem;
+  right: 0;
+  background: #fff;
+  border-radius: 8%;
+  width:auto;
+  animation: fadeIn 0.2s ease-in-out;
+  overflow: hidden;
+  list-style: none;
+}
+
+.option {
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: color 0.1s ease;
+  color: #3a3a3a;
+
+  &:hover {
+    color: #000000;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
