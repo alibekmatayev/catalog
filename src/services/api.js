@@ -69,7 +69,7 @@ export async function getProducts() {
       name: "Puma RS-X",
       price: 250,
       category: "Кроссовки",
-      colors: ["aqua"],
+      colors: ["black", "white"],
       image: "/images/10.avif",
     },
     {
@@ -77,7 +77,7 @@ export async function getProducts() {
       name: "Puma RS-X",
       price: 250,
       category: "Кроссовки",
-      colors: ["aqua"],
+      colors: ["purple"],
       image: "/images/11.avif",
     },
     {
@@ -85,7 +85,7 @@ export async function getProducts() {
       name: "Puma RS-X",
       price: 250,
       category: "Кроссовки",
-      colors: ["aqua"],
+      colors: ["black", "white"],
       image: "/images/12.avif",
     },
     {
@@ -93,7 +93,7 @@ export async function getProducts() {
       name: "Puma RS-X",
       price: 250,
       category: "Кроссовки",
-      colors: ["aqua"],
+      colors: ["black"],
       image: "/images/13.avif",
     },
   ];
