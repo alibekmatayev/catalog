@@ -1,4 +1,5 @@
 .productPage {
+  
   padding: 0 2rem;
 
   @media (max-width: 768px) {
@@ -60,18 +61,22 @@
 
 .mobileFilterPanel {
   position: fixed;
-  inset: 0; 
+  top: 0;
+  bottom: 0;
+  right: 0;
   background: #fff;
   padding: 1rem 1.5rem;
   z-index: 1001;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: unset;
   gap: 1rem;
+
+  width: min(40vw, 300px); 
+  min-width: 280px;      
+
+  transition: transform 0.3s ease;
+  transform: translateX(0);
 }
 
 .closeIcon {
@@ -96,11 +101,12 @@
   }
 
   &.withFilter {
-    grid-template-columns: 250px 1fr;
+    grid-template-columns: 230px 1fr;
   }
 
   &.noFilter {
     grid-template-columns: 1fr;
+    gap: 2rem 0.5rem;
   }
 
 }

@@ -8,13 +8,15 @@
   max-width: 360px;
   width: 100%;
   border: 1px solid transparent; 
+  margin: 0 auto;
 
   &:hover {
 
-    transform: scale(1.02);
+    transform: scale(1.01);
     border: 1px solid #cccccc7e;
   }
 }
+
 
 .imageWrapper {
   position: relative;

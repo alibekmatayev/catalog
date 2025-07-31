@@ -122,6 +122,7 @@ export default function ProductPage() {
             !isMobile && showFilter ? withFilter : noFilter
           }`}
         >
+          {/* Десктопная версия фильтра */}
           {!isMobile && showFilter && (
             <FilterPanel
               category={category}
@@ -145,6 +146,7 @@ export default function ProductPage() {
         </div>
       </div>
 
+      {/* Мобильная модалка фильтра */}
       {isMobile && isModalOpen && (
         <>
           <div
@@ -159,6 +161,7 @@ export default function ProductPage() {
               onClick={() => setIsModalOpen(false)}
             />
 
+            {/* Отдельный рендер фильтра для мобильной версии */}
             <FilterPanel
               category={category}
               onCategoryChange={setCategory}

@@ -4,6 +4,7 @@ import styles from "./Header.module.scss";
 import Link from "next/link";
 import { ShoppingBasket, Search, Menu, X } from "lucide-react";
 import { useState } from "react";
+import { useCart } from "@/context/CartContext";
 
 const {
   header,
@@ -14,16 +15,21 @@ const {
   mobileMenu,
   mobileNavOpen,
   rightGroup,
+  cartBadge,
 } = styles;
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { cartItems } = useCart();
+
+  const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <header className={header}>
       <Link href="/" className={logo}>
         CATALOG
       </Link>
+
       <nav className={nav}>
         <Link href="/">Главная</Link>
         <Link href="/products">Продукты</Link>
@@ -33,12 +39,14 @@ export default function Header() {
 
       <div className={rightGroup}>
         <Search strokeWidth={0.75} />
+
         <Link className={cart} href="/cart">
           <ShoppingBasket
             style={{ cursor: "pointer" }}
             size={24}
             strokeWidth={0.75}
           />
+          {cartCount > 0 && <span className={cartBadge}>{cartCount}</span>}
         </Link>
 
         <button

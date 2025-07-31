@@ -74,13 +74,26 @@
 
 .cart {
   position: relative;
-  color: #3c3c3c;
-  transition: all 0.3s ease;
-
-  &:hover {
-      color: #000000;
-    }
+  display: inline-block;
 }
+
+.cartBadge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
 
 .menuButton {
   display: none;

@@ -2,7 +2,7 @@
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
+  gap: 2rem 0.5rem ;
   align-content: start;
   height: 100%;
 
@@ -38,4 +38,11 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.paginationWrapper {
+  grid-column: 1 / -1; 
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
 }

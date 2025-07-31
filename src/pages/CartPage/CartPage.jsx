@@ -1,26 +1,53 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import styles from "./CartPage.module.scss";
-import Link from "next/link";
-import Image from "next/image"; // ✅ добавили импорт
+import Image from "next/image";
 
 export default function CartPage() {
   const router = useRouter();
   const { cartItems, removeFromCart, clearCart } = useCart();
+  const [confirmAction, setConfirmAction] = useState(null);
 
   const total = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
   );
 
+  const handleRemoveOne = (id) => {
+    setConfirmAction({ type: "removeOne", itemId: id });
+  };
+
+  const handleClearCart = () => {
+    setConfirmAction({ type: "clearAll" });
+  };
+
+  const confirmActionHandler = () => {
+    if (!confirmAction) return;
+
+    if (confirmAction.type === "removeOne" && confirmAction.itemId != null) {
+      removeFromCart(confirmAction.itemId);
+    }
+    if (confirmAction.type === "clearAll") {
+      clearCart();
+    }
+
+    setConfirmAction(null);
+  };
+
+  const cancelActionHandler = () => {
+    setConfirmAction(null);
+  };
+
   return (
     <>
       <button className={styles.backButton} onClick={() => router.back()}>
         <ArrowLeft size={24} />
       </button>
+
       <div className={styles.cartPage}>
         <h2 className={styles.title}>Корзина</h2>
 
@@ -38,7 +65,7 @@ export default function CartPage() {
                     <Image
                       src={item.image}
                       alt={item.name}
-                      width={150} // миниатюра
+                      width={150}
                       height={150}
                       className={styles.itemImage}
                     />
@@ -63,7 +90,7 @@ export default function CartPage() {
 
                   <button
                     className={styles.removeButton}
-                    onClick={() => removeFromCart(item.id)}
+                    onClick={() => handleRemoveOne(item.id)}
                   >
                     Удалить
                   </button>
@@ -77,17 +104,34 @@ export default function CartPage() {
                 <strong>{total.toFixed(2)}$</strong>
               </div>
 
-              <button className={styles.clear} onClick={clearCart}>
+              <button className={styles.clear} onClick={handleClearCart}>
                 Очистить корзину
               </button>
               <button className={styles.checkout}>Оформить заказ</button>
-              <Link href="/products" className={styles.backLink}>
-                ← Вернуться к покупкам
-              </Link>
             </div>
           </div>
         )}
       </div>
+
+      {confirmAction && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modal}>
+            <p>
+              {confirmAction.type === "removeOne"
+                ? "Вы уверены, что хотите удалить товар?"
+                : "Вы уверены, что хотите очистить корзину?"}
+            </p>
+            <div className={styles.modalButtons}>
+              <button onClick={confirmActionHandler} className={styles.yes}>
+                Да
+              </button>
+              <button onClick={cancelActionHandler} className={styles.no}>
+                Нет
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
